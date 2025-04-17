@@ -1,13 +1,13 @@
 
 const IncomeSchema=require('../models/IncomeModel')
 exports.addIncome =  async (req,res)=>{
-  const {title,amount,category,description,date}=req.body
+  const {title,amount,category,description,type,date,username}=req.body
   const income=IncomeSchema({
-    title,amount,category,description,date
+    title,amount,category,description,type,date,username
   })
 
   try {
-    if(!title||!category||!date||!description){
+    if(!title||!category||!date||!description||!username){
       return res.status(400).json({message:"all fields are required!"})
     }
     if(amount<=0||!amount==='number'){
@@ -20,14 +20,34 @@ exports.addIncome =  async (req,res)=>{
   }
 }
 
-exports.getIncomes= async(req,res)=>{
+// exports.getIncomes= async(req,res)=>{
+//   const username="shalala"
+//   try {
+//     // const incomes=await IncomeSchema.find().sort({createdAt:-1})
+//     // res.status(200).json(incomes)
+//     const incomes = await IncomeSchema.find({ username }).sort({ createdAt: -1 }); // Filter by username
+//     res.status(200).json(incomes);
+//   } catch (error) {
+//     res.status(500).json({message:"Server error!"})
+//   }
+// }
+exports.getIncomes = async (req, res) => {
   try {
-    const incomes=await IncomeSchema.find().sort({createdAt:-1})
-    res.status(200).json(incomes)
+    const { username } = req.query; // Destructure username from query parameters
+
+    // Validate if username is provided
+    if (!username) {
+      return res.status(400).json({ message: "Username is required!" });
+    }
+
+    // Fetch incomes specific to the username
+    const incomes = await IncomeSchema.find({ username }).sort({ createdAt: -1 });
+    res.status(200).json(incomes);
   } catch (error) {
-    res.status(500).json({message:"Server error!"})
+    res.status(500).json({ message: "Server error!" });
   }
-}
+};
+
 
 exports.deleteIncome= async(req,res)=>{
   const {id} =req.params;
@@ -40,3 +60,6 @@ exports.deleteIncome= async(req,res)=>{
     res.status(500).json({message:"Server error!"})
   })
 }
+
+
+
