@@ -18,6 +18,7 @@ import Alltransactions from './components/Alltransactions/Alltransactions';
 import { BrowserRouter, Routes, Route,useNavigate } from 'react-router-dom';
 import Reg from './components/HomePage/Reg';
 import Log from './components/HomePage/Log';
+import Insights from './components/insights/Insights';
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
         return <Income />;
       case 4:
         return <Expenses />;
+      case 5:
+          return <Insights />;
       default:
         return <Dashboard />;
     }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { InnerLayout } from '../../styles/Layouts';
 import Chart from '../Chart/Chart';
 import { useGlobalContext } from '../../context/globalContext';
-import { dollar } from '../../utils/Icons';
+import { rupee} from '../../utils/Icons';
 import History from '../History/History';
 
 
@@ -27,19 +27,19 @@ useEffect(()=>{
                             <div className="income">
                                 <h2>Total Income</h2>
                                 <p>
-                                    {dollar} {totalIncome()}
+                                    {rupee} {totalIncome()}
                                 </p>
                             </div>
                             <div className="expense">
                                 <h2>Total Expense</h2>
                                 <p>
-                                    {dollar} {totalExpenses()}
+                                    {rupee} {totalExpenses()}
                                 </p>
                             </div>
                             <div className="balance">
                                 <h2>Total Balance </h2>
                                 <p>
-                                    {dollar}{totalBalance()}
+                                    {rupee}{totalBalance()}
                                 </p>
                             </div>
                         </div>
@@ -49,19 +49,19 @@ useEffect(()=>{
                         <h2 className="salary-title">Min <span>Salary</span>Max</h2>
                         <div className="salary-item">
                             <p>
-                                ${Math.min(...incomes.map(item => item.amount))}
+                                {rupee}{Math.min(...incomes.map(item => item.amount))}
                             </p>
                             <p>
-                                ${Math.max(...incomes.map(item => item.amount))}
+                                {rupee}{Math.max(...incomes.map(item => item.amount))}
                             </p>
                         </div>
                         <h2 className="salary-title">Min <span>Expense</span>Max</h2>
                         <div className="salary-item">
                             <p>
-                                ${Math.min(...expenses.map(item => item.amount))}
+                                {rupee}{Math.min(...expenses.map(item => item.amount))}
                             </p>
                             <p>
-                                ${Math.max(...expenses.map(item => item.amount))}
+                                {rupee}{Math.max(...expenses.map(item => item.amount))}
                             </p>
                         </div>
                     </div>
